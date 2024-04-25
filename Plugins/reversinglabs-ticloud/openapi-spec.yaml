@@ -16,7 +16,10 @@ paths:
   /databrowser/malware_presence/query/{hash_type}/{hash_value}?extended=true:
     get:
       summary: Get file reputation (single query)
-      description: TCA-0101 Get the reputation of the supplied file hash.
+      description: |
+        TCA-0101 Get the reputation of the supplied file hash.
+        #ExamplePrompt Get the reputation of the file hash
+        #ExamplePrompt Is this file hash malicious?
       operationId: GetFileHashReputation
       parameters:
         - name: hash_type
@@ -63,8 +66,10 @@ paths:
   /databrowser/rldata/query/{hash_type}/{hash_value}:
     get:
       summary: Get file analysis (single query)
-      description: TCA-0104 Get the detailed analysis results for the requested hash.
-      operationId: GetDetailedFileAnalysisResults
+      description: |
+        TCA-0104 Get the detailed analysis results for the requested hash.
+        #ExamplePrompt Summarize the detailed file analysis report for the file hash
+        #ExamplePrompt What are the MITRE ATT&ACK tactics are reported in the detailed analysis for this file hash?
       parameters:
         - name: hash_type
           in: path
@@ -110,7 +115,10 @@ paths:
   /dynamic/analysis/report/v1/query/{hash_type}/{hash_value}:
     get:
       summary: Get file dynamic analysis (single query)
-      description: TCA-0106 Get the dynamic analysis results for the requested hash.
+      description: |
+        TCA-0106 Get the dynamic analysis results for the requested hash.
+        #ExamplePrompt Summarize the dynamic analysis report for this file hash
+        #ExamplePrompt Were any network connections created during the dynamic analysis for this file hash?
       operationId: GetDynamicAnalysisReport
       parameters:
         - name: hash_type
