@@ -1,0 +1,482 @@
+openapi: 3.0.0
+info:
+  title: ReversingLabs TitaniumCloud
+  description: ReversingLabs TitaniumCloud is a threat intelligence solution providing up-to-date file reputation
+    services, threat classification and rich context on over 10 billion goodware and malware files. A powerful set of
+    REST API query and feed functions deliver targeted file and malware intelligence for threat identification,
+    analysis, intelligence development, and threat hunting services.
+  contact:
+    name: ReversingLabs support
+    url: https://support.reversinglabs.com/
+    email: support@reversinglabs.com
+  version: "1.3"
+servers:
+  - url: https://data.reversinglabs.com/api
+paths:
+  /databrowser/malware_presence/query/{hash_type}/{hash_value}?extended=true:
+    get:
+      summary: Get file reputation (single query)
+      description: TCA-0101 Get the reputation of the supplied file hash.
+      operationId: GetFileHashReputation
+      parameters:
+        - name: hash_type
+          in: path
+          description: Hash algorithm type. Enter either md5, sha1 or sha256.
+          required: true
+          schema:
+            type: string
+        - name: hash_value
+          in: path
+          description: Enter the hash value.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK! The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/file-hash-reputation"
+        "400":
+          description: Bad Request! The request could not be understood by the server due to malformed syntax. A possible reason
+            might be that the request contains Unicode characters that cannot be processed.
+          content: {}
+        "401":
+          description: Unauthorized! The request requires user authentication. The request MUST include a WWW- Authenticate header
+            field containing a challenge applicable to the requested resource.
+          content: {}
+        "403":
+          description: Forbidden! The server understood the request, but is refusing to fulfill it.
+          content: {}
+        "404":
+          description: Not Found! The server has not found anything matching the Request-URI.
+          content: {}
+        "500":
+          description: Internal Server Error! The server encountered an unexpected condition which prevented it from fulfilling
+            the request.
+          content: {}
+        "503":
+          description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
+            maintenance of the server.
+          content: {}
+  /databrowser/rldata/query/{hash_type}/{hash_value}:
+    get:
+      summary: Get file analysis (single query)
+      description: TCA-0104 Get the detailed analysis results for the requested hash.
+      operationId: GetDetailedFileAnalysisResults
+      parameters:
+        - name: hash_type
+          in: path
+          description: Hash algorithm type. Enter either md5, sha1 or sha256.
+          required: true
+          schema:
+            type: string
+        - name: hash_value
+          in: path
+          description: Enter the hash value.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK! The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/detailed-analysis-report"
+        "400":
+          description: Bad Request! The request could not be understood by the server due to malformed syntax. A possible reason
+            might be that the request contains Unicode characters that cannot be processed.
+          content: {}
+        "401":
+          description: Unauthorized! The request requires user authentication. The request MUST include a WWW- Authenticate header
+            field containing a challenge applicable to the requested resource.
+          content: {}
+        "403":
+          description: Forbidden! The server understood the request, but is refusing to fulfill it.
+          content: {}
+        "404":
+          description: Not Found! The server has not found anything matching the Request-URI.
+          content: {}
+        "500":
+          description: Internal Server Error! The server encountered an unexpected condition which prevented it from fulfilling
+            the request.
+          content: {}
+        "503":
+          description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
+            maintenance of the server.
+          content: {}
+  /dynamic/analysis/report/v1/query/{hash_type}/{hash_value}:
+    get:
+      summary: Get file dynamic analysis (single query)
+      description: TCA-0106 Get the dynamic analysis results for the requested hash.
+      operationId: GetDynamicAnalysisReport
+      parameters:
+        - name: hash_type
+          in: path
+          description: Hash algorithm type. Enter either md5, sha1 or sha256.
+          required: true
+          schema:
+            type: string
+        - name: hash_value
+          in: path
+          description: Enter the hash value.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK! The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/dynamic-analysis-report"
+        "400":
+          description: Bad Request! The request could not be understood by the server due to malformed syntax. A possible reason
+            might be that the request contains Unicode characters that cannot be processed.
+          content: {}
+        "401":
+          description: Unauthorized! The request requires user authentication. The request MUST include a WWW- Authenticate header
+            field containing a challenge applicable to the requested resource.
+          content: {}
+        "403":
+          description: Forbidden! The server understood the request, but is refusing to fulfill it.
+          content: {}
+        "404":
+          description: Not Found! The server has not found anything matching the Request-URI.
+          content: {}
+        "500":
+          description: Internal Server Error! The server encountered an unexpected condition which prevented it from fulfilling
+            the request.
+          content: {}
+        "503":
+          description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
+            maintenance of the server.
+          content: {}
+components:
+  schemas:
+    file-hash-reputation:
+      type: object
+      properties:
+        rl:
+          type: object
+          properties:
+            malware_presence:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  scanner_count:
+                    type: integer
+                  classification:
+                    type: object
+                    properties:
+                      subplatform:
+                        type: string
+                      platform:
+                        type: string
+                      type:
+                        type: string
+                      is_generic:
+                        type: boolean
+                      family_name:
+                        type: string
+                  scanner_percent:
+                    type: number
+                    format: float
+                  scanner_match:
+                    type: integer
+                  threat_name:
+                    type: string
+                  reason:
+                    type: string
+                  first_seen:
+                    type: string
+                    format: date-time
+                  threat_level:
+                    type: integer
+                  trust_factor:
+                    type: integer
+                  last_seen:
+                    type: string
+                    format: date-time
+    detailed-analysis-report:
+      type: object
+      required:
+        - rl
+      properties:
+        rl:
+          type: object
+          properties:
+            sample:
+              type: object
+              properties:
+                analysis:
+                  type: object
+                  properties:
+                    entries:
+                      type: array
+                      items:
+                        type: object
+                        properties:   
+                          story:
+                            type: string
+                          analysis_type:
+                            type: string
+                          record_time:
+                            type: string
+                            format: date-time
+                          tc_report:
+                            type: object
+                            properties:
+                              info:
+                                type: object
+                                properties:
+                                  file:
+                                    type: object
+                                    properties:
+                                      file_type:
+                                        type: string
+                                      file_subtype:
+                                        type: string
+                                  identification:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                xref:
+                  type: object
+                  properties:
+                    entries:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          record_time:
+                            type: string
+                            format: date-time
+                          scanners:
+                            type: array
+                    first_seen:
+                      type: string
+                      format: date-time
+                    last_seen:
+                      type: string
+                      format: date-time
+                    sample_type:
+                      type: string
+    dynamic-analysis-report:
+      type: object
+      required:
+        - rl
+      properties:
+        rl:
+          type: object
+          properties:
+            report:
+              type: object
+              properties:
+                classification:
+                  type: string
+                threat_names:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      threat_name:
+                        type: string
+                      analysis_ids:
+                        type: array
+                        items:
+                          type: string
+                mitre_attack:
+                  type: object
+                  properties:
+                    matrix_list:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          tactics:
+                            type: object
+                            properties:
+                              tactic_list:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    name:
+                                      type: string
+                                    techniques:
+                                      type: object
+                                      properties:
+                                        technique_list:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              analysis_ids:
+                                                type: array
+                                                items:
+                                                  type: string
+                                              id:
+                                                type: string
+                                              name:
+                                                type: string
+                network:
+                  type: object
+                  properties:
+                    url:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                          source:
+                            type: string
+                    udp:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          destination_port:
+                            type: integer
+                          process_id:
+                            type: integer
+                          destination_ip:
+                            type: string
+                    tcp:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          destination_port:
+                            type: integer
+                          process_id:
+                            type: integer
+                          destination_ip:
+                            type: string
+                    dns:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          process_id:
+                            type: integer
+                          type:
+                            type: string
+                          value:
+                            type: string
+                          address:
+                            type: string
+                behavioral:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      process_actions:
+                        type: array
+                        items:
+                          type: object
+                      registry_actions:
+                        type: array
+                        items:
+                          type: object
+                      file_actions:
+                        type: array
+                        items:
+                          type: object
+                      process:
+                        type: array
+                        items:
+                          type: object
+                      mutex_actions:
+                        type: array
+                        items:
+                          type: object
+                      modules_loaded:
+                        type: array
+                        items:
+                          type: object
+                signatures:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      description:
+                        type: string
+                      risk_factor:
+                        type: integer
+                      sig_id:
+                        type: string
+                last_analysis:
+                  type: string
+                  format: date-time
+                history_analysis:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      analysis_duration:
+                        type: integer
+                      analysis_id:
+                        type: string
+                      classification:
+                        type: string
+                      warnings:
+                        type: array
+                        items:
+                          type: string
+                      risk_score:
+                        type: integer
+                      platform:
+                        type: string
+                      sample_name:
+                        type: string
+                      browser:
+                        type: string
+                      configuration:
+                        type: string
+                      analysis_time:
+                        type: string
+                        format: date-time
+                sha256:
+                  type: string
+                md5:
+                  type: string
+                sha1:
+                  type: string
+                risk_score:
+                  type: integer
+                screenshots:
+                  type: string
+                analysis_time:
+                  type: string
+                  format: date-time
+                analysis_id:
+                  type: string
+                platform:
+                  type: array
+                  items:
+                    type: string
+                sample_name:
+                  type: string
+                malware_configuration:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      threat_name:
+                        type: string
+                      configuration:
+                        type: string
+                      malware_config_url:
+                        type: array
+                        items:
+                          type: string
