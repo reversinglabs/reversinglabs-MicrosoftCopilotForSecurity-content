@@ -1,0 +1,12 @@
+Descriptor:
+  Name: ReversingLabs Spectra Intelligence
+  DisplayName: ReversingLabs Spectra Intelligence
+  Description: Enriches file hashes with data from ReversingLabs Spectra Intelligence. Enables users to understand if a file hash is known to be malicious or benign, and provides a detailed analysis report.
+  Icon: https://www.reversinglabs.com/hubfs/images/RL.svg
+  SupportedAuthTypes:
+    - Basic
+
+SkillGroups:
+  - Format: API
+    Settings:
+      OpenApiSpecUrl: https://raw.githubusercontent.com/reversinglabs/reversinglabs-MicrosoftCopilotForSecurity-content/master/Plugins/rl-spectra-intelligence/openapi-spec.yaml

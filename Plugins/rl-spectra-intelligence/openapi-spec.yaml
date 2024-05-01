@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: ReversingLabs TitaniumCloud
-  description: ReversingLabs TitaniumCloud is a threat intelligence solution providing up-to-date file reputation
+  title: ReversingLabs Spectra Intelligence
+  description: ReversingLabs Spectra Intelligence is a threat intelligence solution providing up-to-date file reputation
     services, threat classification and rich context on over 10 billion goodware and malware files. A powerful set of
     REST API query and feed functions deliver targeted file and malware intelligence for threat identification,
     analysis, intelligence development, and threat hunting services.
@@ -70,6 +70,7 @@ paths:
         TCA-0104 Get the detailed analysis results for the requested hash.
         #ExamplePrompt Summarize the detailed file analysis report for the file hash
         #ExamplePrompt What are the MITRE ATT&ACK tactics are reported in the detailed analysis for this file hash?
+      operationId: GetFileAnalysisResults
       parameters:
         - name: hash_type
           in: path
