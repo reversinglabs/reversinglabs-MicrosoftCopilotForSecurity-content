@@ -21,4 +21,5 @@ Descriptor:
 SkillGroups:
   - Format: API
     Settings:
+      EndpointUrlSettingName: SpectraAnalyzeInstanceUrl
       OpenApiSpecUrl: https://raw.githubusercontent.com/reversinglabs/reversinglabs-MicrosoftCopilotForSecurity-content/spectra-analyze-plugin/Plugins/rl-spectra-analyze/openapi-spec.yaml
