@@ -1,17 +1,25 @@
 openapi: 3.0.0
 info:
   title: ReversingLabs Spectra Analyze
-  description: The ReversingLabs Spectra Analyze appliance provides advanced hunting and investigations through the TitaniumCore high-speed automated static analysis engine, and integrates with file reputation services to provide in-depth rich context and threat classification across thousands of file types based on a comprehensive repository of goodware and malware. It supports visualization, APIs for automated workflows, global and local YARA Rules matching, and integration with third-party sandbox tools.
+  description: The ReversingLabs Spectra Analyze appliance provides advanced hunting and 
+    investigations through the TitaniumCore high-speed automated static analysis engine, 
+    and integrates with file reputation services to provide in-depth rich context and 
+    threat classification across thousands of file types based on a comprehensive repository 
+    of goodware and malware. It supports visualization, APIs for automated workflows, global 
+    and local YARA Rules matching, and integration with third-party sandbox tools.
   contact:
     name: ReversingLabs support
     url: https://support.reversinglabs.com/
     email: support@reversinglabs.com
   version: "8.4.1"
 paths:
-  /v2/samples/{hash_value}/ticore/:
+  /api/v2/samples/{hash_value}/ticore/:
     get:
       summary: Get TiCore report
-      description: Get the TiCore analysis report of the provided file hash.
+      description: | 
+        Get the TiCore analysis report of the provided file hash.
+        #ExamplePrompt Get the TiCore report of the file hash
+        #ExamplePrompt Is this file hash malicious?
       operationId: GetTiCoreReport
       parameters:
         - name: hash_value
@@ -49,10 +57,13 @@ paths:
           description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
             maintenance of the server.
           content: {}
-  /samples/v3/{hash_value}/classification/:
+  /api/samples/v3/{hash_value}/classification/:
     get:
       summary: Get file classification
-      description: Get the classification of the provided file hash.
+      description: | 
+        Get the classification of the provided file hash.
+        #ExamplePrompt Get the Spectra Analyze classification of the file hash
+        #ExamplePrompt Is this file hash malicious?
       operationId: GetFileClassification
       parameters:
         - name: hash_value
