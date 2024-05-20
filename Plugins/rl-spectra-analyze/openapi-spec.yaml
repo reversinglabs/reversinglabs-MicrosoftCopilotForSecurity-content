@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: ReversingLabs Spectra Analyze
+  description: The ReversingLabs Spectra Analyze appliance provides advanced hunting and investigations through the TitaniumCore high-speed automated static analysis engine, and integrates with file reputation services to provide in-depth rich context and threat classification across thousands of file types based on a comprehensive repository of goodware and malware. It supports visualization, APIs for automated workflows, global and local YARA Rules matching, and integration with third-party sandbox tools.
+  contact:
+    name: ReversingLabs support
+    url: https://support.reversinglabs.com/
+    email: support@reversinglabs.com
+  version: "8.4.1"
+paths:
+  /v2/samples/{hash_value}/ticore/:
+    get:
+      summary: Get TiCore report
+      description: Get the TiCore analysis report of the provided file hash.
+      operationId: GetTiCoreReport
+      parameters:
+        - name: hash_value
+          in: path
+          description: Hash string
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK! The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ticore-report"
+        "400":
+          description: Bad Request! The request could not be understood by the server due to malformed syntax. A possible reason
+            might be that the request contains Unicode characters that cannot be processed.
+          content: {}
+        "401":
+          description: Unauthorized! The request requires user authentication. The request MUST include a WWW- Authenticate header
+            field containing a challenge applicable to the requested resource.
+          content: {}
+        "403":
+          description: Forbidden! The server understood the request, but is refusing to fulfill it.
+          content: {}
+        "404":
+          description: Not Found! The server has not found anything matching the Request-URI.
+          content: {}
+        "500":
+          description: Internal Server Error! The server encountered an unexpected condition which prevented it from fulfilling
+            the request.
+          content: {}
+        "503":
+          description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
+            maintenance of the server.
+          content: {}
+  /samples/v3/{hash_value}/classification/:
+    get:
+      summary: Get file classification
+      description: Get the classification of the provided file hash.
+      operationId: GetFileClassification
+      parameters:
+        - name: hash_value
+          in: path
+          description: Hash string
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK! The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/spectra-analyze-classification"
+        "400":
+          description: Bad Request! The request could not be understood by the server due to malformed syntax. A possible reason
+            might be that the request contains Unicode characters that cannot be processed.
+          content: {}
+        "401":
+          description: Unauthorized! The request requires user authentication. The request MUST include a WWW- Authenticate header
+            field containing a challenge applicable to the requested resource.
+          content: {}
+        "403":
+          description: Forbidden! The server understood the request, but is refusing to fulfill it.
+          content: {}
+        "404":
+          description: Not Found! The server has not found anything matching the Request-URI.
+          content: {}
+        "500":
+          description: Internal Server Error! The server encountered an unexpected condition which prevented it from fulfilling
+            the request.
+          content: {}
+        "503":
+          description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
+            maintenance of the server.
+          content: {}
+components:
+  schemas:
+    ticore-report:
+      type: object
+      properties:
+        classification:
+          type: object
+          properties:
+            classification:
+              type: integer
+            result:
+              type: string
+        story:
+          type: string
+    spectra-analyze-classification:
+      type: object
+      properties:
+        classification:
+          type: string
+        riskscore:
+          type: integer
+        classification_reason:
+          type: string
+        classification_result:
+          type: string
+        sha256:
+          type: string
+        sha1:
+          type: string
+        md5:
+          type: string
