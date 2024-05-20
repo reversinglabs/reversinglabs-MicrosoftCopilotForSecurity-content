@@ -8,7 +8,7 @@ info:
     email: support@reversinglabs.com
   version: "8.4.1"
 paths:
-  /v2/samples/{hash_value}/ticore/:
+  /api/v2/samples/{hash_value}/ticore/:
     get:
       summary: Get TiCore report
       description: Get the TiCore analysis report of the provided file hash.
@@ -49,7 +49,7 @@ paths:
           description: Service Unavailable! The server is currently unable to handle the request due to a temporary overloading or
             maintenance of the server.
           content: {}
-  /samples/v3/{hash_value}/classification/:
+  /api/samples/v3/{hash_value}/classification/:
     get:
       summary: Get file classification
       description: Get the classification of the provided file hash.
