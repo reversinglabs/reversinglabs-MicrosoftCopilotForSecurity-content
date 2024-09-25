@@ -2,7 +2,9 @@ Descriptor:
   Name: ReversingLabsSpectraAnalyze
   DisplayName: ReversingLabs Spectra Analyze
   Description: Supplies analysts with detailed file analysis results from a ReversingLabs Spectra Analyze appliance.
+  DescriptionDisplay: Supplies analysts with detailed file analysis results from a ReversingLabs Spectra Analyze appliance.
   Icon: https://www.reversinglabs.com/hubfs/images/RL.svg
+  Version: 1.0.0
   Settings:
     - Name: SpectraAnalyzeInstanceUrl
       Label: RL Spectra Analyze Instance URL
