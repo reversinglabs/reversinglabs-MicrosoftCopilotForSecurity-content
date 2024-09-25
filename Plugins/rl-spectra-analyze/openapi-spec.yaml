@@ -12,10 +12,11 @@ paths:
     get:
       summary: Get TiCore report
       description: | 
-        Get the TiCore analysis report of the provided file hash.
+        Get the TiCore analysis report of the provided file hash from Spectra Analyze.
         #ExamplePrompt Summarize the TiCore analysis report of the file hash
         #ExamplePrompt What MITRE ATT&CK tactics are associated with this file hash
       operationId: GetTiCoreReport
+      displayName: Get TiCore Report
       parameters:
         - name: hash_value
           in: path
@@ -56,10 +57,11 @@ paths:
     get:
       summary: Get file classification
       description: |
-        Get the classification of the provided file hash.
+        Get the classification of the provided file hash from Spectra Analyze.
         #ExamplePrompt Get the classificaiton the file hash
         #ExamplePrompt What is the classification of this file hash
       operationId: GetFileClassification
+      displayName: Get File Classification
       parameters:
         - name: hash_value
           in: path
