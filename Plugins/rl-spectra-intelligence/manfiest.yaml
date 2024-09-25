@@ -9,4 +9,4 @@ Descriptor:
 SkillGroups:
   - Format: API
     Settings:
-      OpenApiSpecUrl: https://raw.githubusercontent.com/reversinglabs/reversinglabs-MicrosoftCopilotForSecurity-content/reversinglabs-ga-updates/Plugins/rl-spectra-intelligence/openapi-spec.yaml
+      OpenApiSpecUrl: https://raw.githubusercontent.com/reversinglabs/reversinglabs-MicrosoftCopilotForSecurity-content/master/Plugins/rl-spectra-intelligence/openapi-spec.yaml

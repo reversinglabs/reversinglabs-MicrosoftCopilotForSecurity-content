@@ -1,5 +1,5 @@
 Descriptor:
-  Name: ReversingLabs Spectra Analyze
+  Name: ReversingLabsSpectraAnalyze
   DisplayName: ReversingLabs Spectra Analyze
   Description: Supplies analysts with detailed file analysis results from a ReversingLabs Spectra Analyze appliance.
   Icon: https://www.reversinglabs.com/hubfs/images/RL.svg
@@ -22,4 +22,4 @@ SkillGroups:
   - Format: API
     Settings:
       EndpointUrlSettingName: SpectraAnalyzeInstanceUrl
-      OpenApiSpecUrl: https://raw.githubusercontent.com/reversinglabs/reversinglabs-MicrosoftCopilotForSecurity-content/reversinglabs-ga-updates/Plugins/rl-spectra-analyze/openapi-spec.yaml
+      OpenApiSpecUrl: https://raw.githubusercontent.com/reversinglabs/reversinglabs-MicrosoftCopilotForSecurity-content/master/Plugins/rl-spectra-analyze/openapi-spec.yaml
